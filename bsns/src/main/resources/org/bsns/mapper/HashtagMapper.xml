@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.bsns.mapper.HashtagMapper">
+	<insert id="insertHash">
+		insert into tbl_hashtag (tagname, status, mid, bno)
+		values(#{tagname}, #{status}, #{mid}, (select max(bno) from tbl_board))
+	</insert>
+</mapper>

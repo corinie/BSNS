@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.bsns.mapper.BoardMapper">
+	
+	<insert id="insert">
+		insert into tbl_board (writer, content)
+		values(#{writer}, #{content})
+	</insert>
+	
+	<resultMap type="org.bsns.domain.BoardVO" id="boardMap">
+	<id property="bno" column="bno"/>
+	<result property="content" column="content"/>
+	<result property="writer" column="writer"/>
+	<collection property="pvo" resultMap="photoMap"></collection>
+	<collection property="hvo" resultMap="hashtagMap"></collection>
+	</resultMap>
+	
+	<resultMap type="org.bsns.domain.PhotoVO" id="photoMap">
+	<id property="pno" column="pno"/>
+	<result property="pname" column="pname"/>
+	<result property="ppath" column="ppath"/>
+	<result property="uuid" column="uuid"/>
+	</resultMap>
+	
+	<resultMap type="org.bsns.domain.HashtagVO" id="hashtagMap">
+	<result property="tagname" column="tagname"/>
+	</resultMap>
+	
+	<select id="getList" resultMap="boardMap">
+		select * from tbl_board b inner join tbl_photo p
+		on b.bno = p.bno inner join tbl_hashtag h on b.bno = h.bno  where b.deleteyn = 'n' group by b.bno order by b.bno desc limit #{skip}, 9
+	</select>
+	
+	<select id="getHashtagList" resultMap="boardMap">
+		select * from tbl_board b inner join tbl_photo p
+		on b.bno = p.bno inner join tbl_hashtag h on b.bno = h.bno  where b.deleteyn = 'n' and tagname = #{tagname} group by b.bno order by b.bno desc limit #{cri.skip}, 9
+	</select>
+	
+	<select id="read" resultMap="boardMap">
+		select * from tbl_board b inner join tbl_photo p 
+		on b.bno = p.bno inner join tbl_hashtag h on b.bno = h.bno where b.deleteyn = 'n' and b.bno = #{bno}
+	</select>
+	
+</mapper>
