@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -60,6 +60,5 @@ public class BoardController {
 		log.info("get view");
 		
 		model.addAttribute("vo", service.read(bno));
-	}
-	
+	}	
 }

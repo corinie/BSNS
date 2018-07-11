@@ -74,5 +74,10 @@ public class BoardServiceImple implements BoardService {
 	public List<BoardVO> getHashtagList(Criteria cri, String tagname) {
 		return mapper.getHashtagList(cri, tagname);
 	}
+	
+	@Override
+	public List<BoardVO> getScrollList(int page) {
+		return mapper.getScrollList(page);
+	}
 
 }
