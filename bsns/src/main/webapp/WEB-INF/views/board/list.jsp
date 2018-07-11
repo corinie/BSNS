@@ -277,9 +277,44 @@ News Feed Section
     </div><!--/ container -->
 </section><!--/ newsfeed -->
 
+<script src="/resources/js/jquery.min.js"></script>
+<script>
 
-
-
+	var page = 1;
+	var str = ""
+	
+	$(window).scroll(function() {
+		
+		if($(window).scrollTop() == $(document).height() - $(window).height()) {
+			
+			page++;
+			
+			$.getJSON("/boardrest/scrolllist/"+page, function(data){
+			
+				for(var i = 0; i < data.length; i++){
+				
+					console.log("url('/display?fileName="+ppath+"/"+uuid+"_"+pname+"') no-repeat);");
+					str = "<div class='col-lg-4'>"
+						 +"<a href='/board/view?bno="+data[i].bno+"' data-toggle='modal'>"
+						 +"<div class='explorebox' style='background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('/display?fileName="+data[i].pvo[0].ppath+"/"+data[i].pvo[0].uuid+"_"+data[i].pvo[0].pname+"') no-repeat;"
+           		         +"background-size: cover; "
+                         +"background-position: center center; "
+                         +"-webkit-background-size: cover; "
+                         +"-moz-background-size: cover; "
+                         +"-o-background-size: cover;'>"
+                         +"<div class='explore-top'>"
+                         +"<div class='explore-like'><i class='fa fa-heart'></i></div>"
+                         +"</div>"
+                     	 +"</div>"
+                		 +"</a>"
+            			 +"</div>";
+            		
+           			$(".row").append(str);
+				}
+			});			
+		}
+	});
+</script>
 
 <!-- ==============================================
 Scripts
