@@ -76,8 +76,8 @@ public class BoardServiceImple implements BoardService {
 	}
 	
 	@Override
-	public List<BoardVO> getScrollList(int page) {
-		return mapper.getScrollList(page);
+	public List<BoardVO> getScrollList(Criteria cri) {
+		return mapper.getScrollList(cri);
 	}
 
 }

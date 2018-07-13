@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.bsns.domain.BoardVO;
 import org.bsns.service.BoardService;
+import org.bsns.util.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,11 +25,11 @@ public class BoardRestController {
 	private BoardService service;
 
 	@GetMapping("/scrolllist/{page}")
-	public ResponseEntity<List<BoardVO>> scrollList(@PathVariable("page") int page) {
+	public ResponseEntity<List<BoardVO>> scrollList(Criteria cri) {
 		ResponseEntity<List<BoardVO>> entity = null;
 
 		try {
-			entity = new ResponseEntity<List<BoardVO>>(service.getScrollList(page), HttpStatus.OK);
+			entity = new ResponseEntity<List<BoardVO>>(service.getScrollList(cri), HttpStatus.OK);
 		} catch (Exception e) {
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}

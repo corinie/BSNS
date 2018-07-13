@@ -13,5 +13,5 @@ public interface BoardService {
 	public BoardVO read(int bno);
 	public List<BoardVO> getList(Criteria cri);
 	public List<BoardVO> getHashtagList(Criteria cri, String tagname);
-	public List<BoardVO> getScrollList(int page);
+	public List<BoardVO> getScrollList(Criteria cri);
 }

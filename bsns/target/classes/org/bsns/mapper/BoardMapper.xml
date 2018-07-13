@@ -30,12 +30,12 @@
 	
 	<select id="getList" resultMap="boardMap">
 		select * from tbl_board b inner join tbl_photo p
-		on b.bno = p.bno inner join tbl_hashtag h on b.bno = h.bno  where b.deleteyn = 'n' group by b.bno order by b.bno desc limit #{skip}, 9
+		on b.bno = p.bno inner join tbl_hashtag h on b.bno = h.bno  where b.deleteyn = 'n' group by b.bno order by b.bno desc limit 0, #{page}
 	</select>
 	
 	<select id="getScrollList" resultMap="boardMap">
 		select * from tbl_board b inner join tbl_photo p
-		on b.bno = p.bno inner join tbl_hashtag h on b.bno = h.bno  where b.deleteyn = 'n' group by b.bno order by b.bno desc limit #{page}, 9
+		on b.bno = p.bno inner join tbl_hashtag h on b.bno = h.bno  where b.deleteyn = 'n' group by b.bno order by b.bno desc limit #{skip}, 9
 	</select>
 	
 	<select id="getHashtagList" resultMap="boardMap">

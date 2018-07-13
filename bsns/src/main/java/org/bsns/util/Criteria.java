@@ -36,8 +36,17 @@ public class Criteria {
 		this.page = page;
 	}
 	
+	
+	
 	public int getSkip() {
- 		return (this.page -1 ) * 10; 
+ 		return (this.page -1 ) * 9; 
+	}
+	
+	public int getPage() {
+		if(this.page == 0) {
+			this.page = 1;
+		}
+		return this.page * 9;
 	}
 	
 	public String getUrl(String bno) {

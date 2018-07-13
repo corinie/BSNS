@@ -356,11 +356,12 @@ Navbar Second Section
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-8 modal-image">
+								<a href="/board/list?page=${param.page }"><button>Back</button></a>
 								<div align="center">
 								<a href="#" id="prev"><button><<</button></a>
 								<a href="#" id="next"><button>>></button></a>
 								</div>
-								
+									
 									<div class="cycle-slideshow"  data-cycle-fx="scrollHorz" data-cycle-timeout="0" data-cycle-prev="#prev" data-cycle-next="#next">
 										<c:forEach items="${vo.pvo}" var="photo">
 										<img class="img-responsive"

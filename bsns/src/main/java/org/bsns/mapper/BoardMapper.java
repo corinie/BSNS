@@ -15,6 +15,6 @@ public interface BoardMapper {
 	public BoardVO read(int bno);
 	public List<BoardVO> getList(Criteria cri);
 	public List<BoardVO> getHashtagList(@Param("cri") Criteria cri, @Param("tagname") String tagname);
-	public List<BoardVO> getScrollList(int page);
+	public List<BoardVO> getScrollList(Criteria cri);
 	
 }

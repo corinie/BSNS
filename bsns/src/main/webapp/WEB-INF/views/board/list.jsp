@@ -251,11 +251,11 @@ News Feed Section
             </div>
         </div>
 
-        <div class="row">
+        <div class="row list-new">
         	<c:forEach items="${list }" var="item">
         	
             <div class="col-lg-4">
-                <a href="/board/view?bno=${item.bno }" data-toggle="modal">
+                <a href="/board/view?bno=${item.bno }&page=1" data-toggle="modal">
                     <div class="explorebox"
                          style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('/display?fileName=${item.pvo[0].ppath}/${item.pvo[0].uuid}_${item.pvo[0].pname }') no-repeat;
 		          background-size: cover;
@@ -279,8 +279,8 @@ News Feed Section
 
 <script src="/resources/js/jquery.min.js"></script>
 <script>
-
-	var page = 1;
+	
+	var page = "";
 	var str = ""
 	
 	$(window).scroll(function() {
@@ -290,14 +290,19 @@ News Feed Section
 			page++;
 			
 			$.getJSON("/boardrest/scrolllist/"+page, function(data){
-			
-				for(var i = 0; i < data.length; i++){
 				
-					console.log("url('/display?fileName="+ppath+"/"+uuid+"_"+pname+"') no-repeat);");
-					str = "<div class='col-lg-4'>"
-						 +"<a href='/board/view?bno="+data[i].bno+"' data-toggle='modal'>"
-						 +"<div class='explorebox' style='background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('/display?fileName="+data[i].pvo[0].ppath+"/"+data[i].pvo[0].uuid+"_"+data[i].pvo[0].pname+"') no-repeat;"
-           		         +"background-size: cover; "
+				console.log(data);
+				
+				$(data).each(function () {
+					
+					var url = "/display?fileName="+this.pvo[0].ppath+"/"+this.pvo[0].uuid+"_"+this.pvo[0].pname;
+					
+					console.log("/display?fileName="+this.pvo[0].ppath+"/"+this.pvo[0].uuid+"_"+this.pvo[0].pname);
+					
+					str  += "<div class='col-lg-4'>"
+						 +"<a href='/board/view?bno="+this.bno+"&page="+page+"' data-toggle='modal'>"
+						 +"<div class='explorebox' id='"+this.bno+"' style='background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url("+url+") no-repeat;"
+          		         +"background-size: cover; "
                          +"background-position: center center; "
                          +"-webkit-background-size: cover; "
                          +"-moz-background-size: cover; "
@@ -305,15 +310,22 @@ News Feed Section
                          +"<div class='explore-top'>"
                          +"<div class='explore-like'><i class='fa fa-heart'></i></div>"
                          +"</div>"
-                     	 +"</div>"
-                		 +"</a>"
-            			 +"</div>";
-            		
-           			$(".row").append(str);
-				}
+                    	 +"</div>"
+               		     +"</a>"
+           			     +"</div>";		
+				});
+				$(".list-new").append(str);
+				console.log(str+"dsfasdfasdfsdagsdgesd");
+				console.log($(".row").html());
+				str = "";
 			});			
 		}
 	});
+	
+	
+	
+	
+	
 </script>
 
 <!-- ==============================================
