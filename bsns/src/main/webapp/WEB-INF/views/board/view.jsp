@@ -49,7 +49,79 @@
     <![endif]-->
 
 </head>
+<style>
+		.box {
+			display: none;
+			width: 80%;
+			height: 80%;
+			z-index: 100;
+			position: absolute;
+		}
+     /*이미지 위치*/
+        .gm-style-iw {
+            top: 43px !important;
+            left: 26px !important;
+            width: 83px !important;
+        }
 
+        /*인포윈도우 창 위치 및 크기*/
+        #map > div > div > div:nth-child(1) > div:nth-child(3) > div > div:nth-child(4) > div > div:nth-child(1) > div:nth-child(4) {
+            top: 40px !important;
+            left: 23px !important;
+            width: 46px !important;
+            height: 46px !important;
+            border-radius: 2px !important;
+        }
+
+        /*인포윈도우 그림자 위치 및 크기*/
+        #map > div > div > div:nth-child(1) > div:nth-child(3) > div > div:nth-child(4) > div > div:nth-child(1) > div:nth-child(2) {
+            top: 39.5px !important;
+            left: 22.5px !important;
+            width: 47px !important;
+            height: 47px !important;
+            border-radius: 2px !important;
+            display: none;
+        }
+
+        /*!*인포윈도우 그림자 제거*!*/
+        #map > div > div > div:nth-child(1) > div:nth-child(3) > div > div:nth-child(4) > div > div:nth-child(1) > div:nth-child(1) {
+
+        }
+        #map > div > div > div:nth-child(1) > div:nth-child(3) > div > div:nth-child(4) > div > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div{
+
+        }
+        #map > div > div > div:nth-child(1) > div:nth-child(3) > div > div:nth-child(4) > div > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) {
+            top: 4px !important;
+        }
+        #map > div > div > div:nth-child(1) > div:nth-child(3) > div > div:nth-child(4) > div > div:nth-child(1) > div:nth-child(3) > div:nth-child(2) > div {
+
+        }
+        #map > div > div > div:nth-child(1) > div:nth-child(3) > div > div:nth-child(4) > div > div:nth-child(1) > div:nth-child(3) > div:nth-child(2) {
+            top: 4px !important;
+        }
+
+        /*인포윈도우 닫기 제거*/
+        .gm-style-iw+div {
+            display : none;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #map {
+         	border-radius: 5px;
+        	width: 99%;
+        	height: 99%;
+        }
+        
+        .mapImg {
+            height: 40px;
+            width: 40px;
+        }
+</style>
 <body>
 
 	<!-- ==============================================
@@ -349,11 +421,24 @@ Navbar Second Section
 	 Modal Section
 	 =============================================== -->
 	<section class="single-post">
+	
 		<div class="container">
 			<div class="row">
 				<div>
 					<div class="modal-content">
 						<div class="modal-body">
+							
+							<div class="box">
+								<div class=".modal modal-content">
+    							<div class=".modal-header">
+       							 <button type="button" class="close" aria-label="Close">
+         						   <span class="close" aria-hidden="true">&times;</span>
+       							 </button>
+   								</div>
+   								<div id="map"></div>
+								</div>
+							</div>
+							
 							<div class="row">
 								<div class="col-md-8 modal-image">
 								<div align="center">
@@ -362,6 +447,7 @@ Navbar Second Section
 								</div>
 								
 									<div class="cycle-slideshow"  data-cycle-fx="scrollHorz" data-cycle-timeout="0" data-cycle-prev="#prev" data-cycle-next="#next">
+									
 										<c:forEach items="${vo.pvo}" var="photo">
 										<img class="img-responsive"
 											src="/display?fileName=${photo.ppath}/${photo.uuid}_${photo.pname }" />
@@ -465,6 +551,7 @@ Navbar Second Section
 		var commenter = $("#commenter");
 		var bno = commenter.data("bno");
 		var str = "";
+		var modal = "";
 		
 		$("#sendBtn").on("click", function(){
 			
@@ -503,8 +590,122 @@ Navbar Second Section
 				$(".img-comment-list").html(str);
 			});
 		}
+		
+		$(".close").on("click", function() {
+			$(".box").hide();
+		});
+		
+		
+	    function initMap() {
+			
+	    	$(".img-responsive").on("click", function(e) {
+	    		
+	    	console.log(e.lat);
+	    	console.log(e);
+	    		
+	    	$(".box").show();
+	    	
+	        /*지도 생성*/
+	        var map = new google.maps.Map(document.getElementById('map'), {
+	            zoom: 4,
+	            center: {lat: -28.024, lng: 140.887},
+	            styles: [
+	                {
+	                    "featureType": "administrative",
+	                    "elementType": "labels.text.fill",
+	                    "stylers": [
+	                        {
+	                            "color": "#444444"
+	                        }
+	                    ]
+	                },
+	                {
+	                    "featureType": "landscape",
+	                    "elementType": "all",
+	                    "stylers": [
+	                        {
+	                            "color": "#f2f2f2"
+	                        }
+	                    ]
+	                },
+	                {
+	                    "featureType": "poi",
+	                    "elementType": "all",
+	                    "stylers": [
+	                        {
+	                            "visibility": "off"
+	                        }
+	                    ]
+	                },
+	                {
+	                    "featureType": "road",
+	                    "elementType": "all",
+	                    "stylers": [
+	                        {
+	                            "saturation": -100
+	                        },
+	                        {
+	                            "lightness": 45
+	                        }
+	                    ]
+	                },
+	                {
+	                    "featureType": "road.highway",
+	                    "elementType": "all",
+	                    "stylers": [
+	                        {
+	                            "visibility": "simplified"
+	                        }
+	                    ]
+	                },
+	                {
+	                    "featureType": "road.arterial",
+	                    "elementType": "labels.icon",
+	                    "stylers": [
+	                        {
+	                            "visibility": "off"
+	                        }
+	                    ]
+	                },
+	                {
+	                    "featureType": "transit",
+	                    "elementType": "all",
+	                    "stylers": [
+	                        {
+	                            "visibility": "off"
+	                        }
+	                    ]
+	                },
+	                {
+	                    "featureType": "water",
+	                    "elementType": "all",
+	                    "stylers": [
+	                        {
+	                            "color": "#46bcec"
+	                        },
+	                        {
+	                            "visibility": "on"
+	                        }
+	                    ]
+	                }
+	            ]
+	        });
+			
+				/*인포 윈도우 생성*/
+			       var infowindow = new google.maps.InfoWindow({
+			            position: {lat: -31.563910, lng: 147.154312},
+			            content: "<img class='mapImg' src='https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory&fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F215ECD3651663C812D71D1'>",
+			            map: map
+			        });
+				
+			});
+	       
+	    }
+		
 	</script>
 	
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcTmuVd-hJBF_a5pEU5SnwOWlBh2eiMK8&callback=initMap"
+        async defer></script>
 
 </body>
 </html>
