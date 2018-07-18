@@ -130,7 +130,7 @@ public class PhotoController {
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-		
+	
 		return result;
 	}
 	
