@@ -34,61 +34,6 @@ Navbar Second Section
 </section>
 
 <!-- ==============================================
-News Feed Section
-=============================================== -->
-
-<script src="/resources/js/jquery.min.js"></script>
-<script>
-	
-	var page = "";
-	var str = ""
-	
-	$(window).scroll(function() {
-		
-		if($(window).scrollTop() == $(document).height() - $(window).height()) {
-			
-			page++;
-			
-			$.getJSON("/boardrest/scrolllist/"+page, function(data){
-				
-				console.log(data);
-				
-				$(data).each(function () {
-					
-					var url = "/display?fileName="+this.pvo[0].ppath+"/"+this.pvo[0].uuid+"_"+this.pvo[0].pname;
-					
-					console.log("/display?fileName="+this.pvo[0].ppath+"/"+this.pvo[0].uuid+"_"+this.pvo[0].pname);
-					
-					str  += "<div class='col-lg-4'>"
-						 +"<a href='/board/view?bno="+this.bno+"&page="+page+"' data-toggle='modal'>"
-						 +"<div class='explorebox' id='"+this.bno+"' style='background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url("+url+") no-repeat;"
-          		         +"background-size: cover; "
-                         +"background-position: center center; "
-                         +"-webkit-background-size: cover; "
-                         +"-moz-background-size: cover; "
-                         +"-o-background-size: cover;'>"
-                         +"<div class='explore-top'>"
-                         +"<div class='explore-like'><i class='fa fa-heart'></i></div>"
-                         +"</div>"
-                    	 +"</div>"
-               		     +"</a>"
-           			     +"</div>";		
-				});
-				$(".list-new").append(str);
-				console.log(str+"dsfasdfasdfsdagsdgesd");
-				console.log($(".row").html());
-				str = "";
-			});			
-		}
-	});
-	
-	
-	
-	
-	
-</script>
-
-<!-- ==============================================
 Scripts
 =============================================== -->
 <script src="/resources/js/jquery.min.js"></script>

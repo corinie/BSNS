@@ -52,120 +52,6 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-body">
-
-				<div class="row">
-					
-					<div class="col-md-8 modal-image">
-						<img class="img-responsive" src="https://www.fmkorea.com/files/attach/new/20180417/486616/41170129/1021006724/554449902566a4417eee09a4fdb7bd79.jpg">
-					</div>
-					<!--/ col-md-8 -->
-					<div class="col-md-4 modal-meta">
-						<div class="modal-meta-top">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">
-								<span aria-hidden="true">×</span><span class="sr-only">Close</span>
-							</button>
-							<!--/ button -->
-							<div class="img-poster clearfix">
-								<a href=""><img class="img-responsive img-circle"
-									src="assets/img/users/18.jpg" alt="Image" /></a> <strong><a
-									href="">Benjamin</a></strong> <span>12 minutes ago</span><br /> <a
-									href="" class="kafe kafe-btn-mint-small"><i
-									class="fa fa-check-square"></i> Following</a>
-							</div>
-							<!--/ img-poster -->
-
-							<ul class="img-comment-list">
-								<li>
-									<div class="comment-img">
-										<img src="assets/img/users/17.jpeg"
-											class="img-responsive img-circle" alt="Image" />
-									</div>
-									<div class="comment-text">
-										<strong><a href="">Anthony McCartney</a></strong>
-										<p>Hello this is a test comment.</p>
-										<span class="date sub-text">on December 5th, 2016</span>
-									</div>
-								</li>
-								<!--/ li -->
-								<li>
-									<div class="comment-img">
-										<img src="assets/img/users/15.jpg"
-											class="img-responsive img-circle" alt="Image" />
-									</div>
-									<div class="comment-text">
-										<strong><a href="">Vanessa Wells</a></strong>
-										<p>Hello this is a test comment and this comment is
-											particularly very long and it goes on and on and on.</p>
-										<span>on December 5th, 2016</span>
-									</div>
-								</li>
-								<!--/ li -->
-								<li>
-									<div class="comment-img">
-										<img src="assets/img/users/14.jpg"
-											class="img-responsive img-circle" alt="Image" />
-									</div>
-									<div class="comment-text">
-										<strong><a href="">Sean Coleman</a></strong>
-										<p class="">Hello this is a test comment.</p>
-										<span class="date sub-text">on December 5th, 2016</span>
-									</div>
-								</li>
-								<!--/ li -->
-								<li>
-									<div class="comment-img">
-										<img src="assets/img/users/13.jpeg"
-											class="img-responsive img-circle" alt="Image" />
-									</div>
-									<div class="comment-text">
-										<strong><a href="">Anna Morgan</a></strong>
-										<p class="">Hello this is a test comment.</p>
-										<span class="date sub-text">on December 5th, 2016</span>
-									</div>
-								</li>
-								<!--/ li -->
-								<li>
-									<div class="comment-img">
-										<img src="assets/img/users/3.jpg"
-											class="img-responsive img-circle" alt="Image" />
-									</div>
-									<div class="comment-text">
-										<strong><a href="">Allison Fowler</a></strong>
-										<p class="">Hello this is a test comment.</p>
-										<span class="date sub-text">on December 5th, 2016</span>
-									</div>
-								</li>
-								<!--/ li -->
-							</ul>
-							<!--/ comment-list -->
-
-							<div class="modal-meta-bottom">
-								<ul>
-									<li><a class="modal-like" href="#"><i
-											class="fa fa-heart"></i></a><span class="modal-one">
-											786,286</span> | <a class="modal-comment" href="#"><i
-											class="fa fa-comments"></i></a><span> 786,286</span></li>
-									<li><span class="thumb-xs"> <img
-											class="img-responsive img-circle"
-											src="assets/img/users/13.jpeg" alt="Image">
-									</span>
-										<div class="comment-body">
-											<input class="form-control input-sm" type="text"
-												placeholder="Write your comment...">
-										</div>
-										<!--/ comment-body --></li>
-								</ul>
-							</div>
-							<!--/ modal-meta-bottom -->
-
-						</div>
-						<!--/ modal-meta-top -->
-					</div>
-					<!--/ col-md-4 -->
-
-				</div>
-				<!--/ row -->
 			</div>
 			<!--/ modal-body -->
 
@@ -176,17 +62,19 @@
 </div>
 <!--/ modal -->
 
-<script
+ <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
+<script src="http://malsup.github.io/jquery.cycle2.js"></script>
 <script>
+
 var bno="";
 var imageStr="";
 var imageStr2="";
 $(".explorebox").on("click", function(){
 	console.log("눌렀다ㅋ");
-	bno = $(".explorebox").attr("data-bno");
+	bno = $(this).attr("data-bno");
 	
 	
 	
@@ -199,12 +87,48 @@ $(".explorebox").on("click", function(){
 		console.log(data.pvo[0].pname);
 		
 		imageStr2 += "<div class='explorebox'"
-			+ "style='background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2))," 
-			+ "url('/display?fileName="+data.pvo[0].ppath+"/"+data.pvo[0].uuid+"_"+data.pvo[0].pname+"')>";
+				  + "style='background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2))," 
+			      + "url('/display?fileName="+data.pvo[0].ppath+"/"+data.pvo[0].uuid+"_"+data.pvo[0].pname+"')>";
   		
-		imageStr += "<img src='/display?fileName="+data.pvo[0].ppath+"/"+data.pvo[0].uuid+"_"+data.pvo[0].pname+"'  background-size: cover;background-position: center center;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;>";
-		console.log(imageStr2);
-		$(".col-md-8").html(imageStr2);
+		imageStr += "<div class='row'>"
+				 +"<div align='center'>"
+				 +"<a href='#' id='prev'><button><<</button></a>"
+				 +"<a href='#' id='next'><button>>></button></a>"
+			 	 +"</div>"
+				 +"<div class='col-md-8 modal-image'>"
+				 +"<div class='cycle-slideshow' data-cycle-fx='scrollHorz' data-cycle-timeout='0' data-cycle-prev='#prev' data-cycle-next='#next'>";
+				 for(var i=0; i<data.pvo.length; i++){
+					 imageStr += "<img class='img-responsive' src='/display?fileName="+data.pvo[i].ppath+"/"+data.pvo[i].uuid+"_"+data.pvo[i].pname+"'>"; 
+				 }
+		
+		imageStr +="</div></div>"
+				 +"<div class='col-md-4 modal-meta'>"
+				 +"<div class='modal-meta-top'>"
+				 +"<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>"
+				 +"<span aria-hidden='true'>×</span><span class='sr-only'>Close</span>"
+				 +"</button>"
+				 +"<div class='img-poster clearfix'>"
+				 +"<a href=''><img class='img-responsive img-circle' src='assets/img/users/18.jpg' alt='Image' /></a> "
+				 +"<strong><a href=''>"+data.writer+"</a></strong> <span>12 minutes ago</span><br />"
+				 +"<a href='' class='kafe kafe-btn-mint-small'>"
+				 +"<i class='fa fa-check-square'></i> Following</a><br>";
+				 +"<div><p>"+data.content+"</p></div>"
+				 for(var i=0; i<data.hvo.length; i++){
+					 imageStr += "<span>"+data.hvo[i].tagname+"</span>";
+				 }
+				 
+		imageStr +="</div><ul class='img-comment-list'></ul>"
+				 +"<div class='modal-meta-bottom'>"
+				 +"<ul><li>"
+				 +"<div class='comment-body'>"
+				 +"<input class='form-control input-sm' type='text' placeholder='Write your comment...'>"
+				 +"</div>"
+				 +"</li></ul>"
+				 +"</div></div></div></div>";
+		
+		$(".modal-body").html(imageStr);
+		
+		imageStr = "";
 		
 		
 	});
@@ -213,6 +137,55 @@ $(".explorebox").on("click", function(){
 	
 	
 });
+</script>
+<script>
+	
+	var page = 1;
+	var str = ""
+	
+	$(window).scroll(function() {
+		
+		if($(window).scrollTop() == $(document).height() - $(window).height()) {
+			
+			page++;
+			
+			$.getJSON("/boardrest/scrolllist/"+page, function(data){
+				
+				console.log(data);
+				
+				$(data).each(function () {
+					
+					var url = "/display?fileName="+this.pvo[0].ppath+"/"+this.pvo[0].uuid+"_"+this.pvo[0].pname;
+					
+					console.log("/display?fileName="+this.pvo[0].ppath+"/"+this.pvo[0].uuid+"_"+this.pvo[0].pname);
+					
+					str  += "<div class='col-lg-4'>"
+						 +"<a href='/board/view?bno="+this.bno+"&page="+page+"' data-toggle='modal'>"
+						 +"<div class='explorebox' id='"+this.bno+"' style='background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url("+url+") no-repeat;"
+          		         +"background-size: cover; "
+                         +"background-position: center center; "
+                         +"-webkit-background-size: cover; "
+                         +"-moz-background-size: cover; "
+                         +"-o-background-size: cover;'>"
+                         +"<div class='explore-top'>"
+                         +"<div class='explore-like'><i class='fa fa-heart'></i></div>"
+                         +"</div>"
+                    	 +"</div>"
+               		     +"</a>"
+           			     +"</div>";		
+				});
+				$(".list-new").append(str);
+				console.log(str+"dsfasdfasdfsdagsdgesd");
+				console.log($(".row").html());
+				str = "";
+			});			
+		}
+	});
+	
+	
+	
+	
+	
 </script>
 
 

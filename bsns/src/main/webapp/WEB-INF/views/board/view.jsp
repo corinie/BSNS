@@ -1,7 +1,7 @@
 <%@include file="../include/header.jsp"%>
 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-â€‹
+€‹
 
 
 
@@ -105,8 +105,12 @@
 	<!--/ modal -->
 
 	
-	<script src="http://malsup.github.io/jquery.cycle2.js"></script>
 	
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="http://malsup.github.io/jquery.cycle2.js"></script>
 	<script type="text/javascript">
 		$('#Slim,#Slim2').slimScroll({
 			height : "auto",
