@@ -24,6 +24,7 @@ public class BoardController {
 	@Setter(onMethod_= {@Autowired})
 	private BoardService service;
 	
+	
 	@GetMapping("/register")
 	public void getRegister() {
 		log.info("get register");
@@ -47,7 +48,7 @@ public class BoardController {
 		model.addAttribute("list", service.getList(cri));
 	}
 	
-	@GetMapping("/hlist")
+	@GetMapping("/hlist") //hashTags list
 	public void getHashtagList(Criteria cri, String tagname, Model model) {
 		log.info("get hlist");
 		
