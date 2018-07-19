@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,6 +48,7 @@
 
 <body>
 
+<sec:authentication property="principal" var="pinfo"/>
 <!-- ==============================================
 Navigation Section
 =============================================== -->
@@ -82,7 +84,7 @@ Navigation Section
                     <li class="dropdown notification-list">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                             <i class="fa fa-bell noti-icon"></i>
-                            <span class="badge badge-danger badge-pill noti-icon-badge">4</span>
+                            <!-- <span class="badge badge-danger badge-pill noti-icon-badge">4</span> -->
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-lg">
 
@@ -135,7 +137,7 @@ Navigation Section
                     <li class="dropdown notification-list">
                         <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                             <i class="fa fa-envelope noti-icon"></i>
-                            <span class="badge badge-success badge-pill noti-icon-badge">6</span>
+                            <!-- <span class="badge badge-success badge-pill noti-icon-badge">6</span> -->
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-lg dropdown-new">
                             <div class="dropdown-item noti-title">
@@ -187,10 +189,10 @@ Navigation Section
 
                     <li class="dropdown mega-avatar">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                            <span class="avatar w-32"><img src="assets/img/users/2.jpg" class="img-resonsive img-circle" width="25" height="25" alt="..."></span>
+                            
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
                             <span class="hidden-xs">
-			Alex Grantte
+			${pinfo.username}
 		   </span>
                         </a>
                         <div class="dropdown-menu w dropdown-menu-scale pull-right">

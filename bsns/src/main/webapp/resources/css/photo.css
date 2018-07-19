@@ -2529,7 +2529,7 @@ a.navbar-brand:hover {
    ========================================================================== */
 .login {
 	background: linear-gradient(rgba(34, 34, 34, 0.7), rgba(34, 34, 34, 0.7)),
-		url('../../img/bg/10.jpg') no-repeat center center fixed;
+		url('/resources/image/10.jpg') no-repeat center center fixed;
 	background-size: cover;
 	background-position: center center;
 	-webkit-background-size: cover;

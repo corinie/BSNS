@@ -48,4 +48,9 @@
 		on b.bno = p.bno inner join tbl_hashtag h on b.bno = h.bno where b.deleteyn = 'n' and b.bno = #{bno}
 	</select>
 	
+	<select id="getListId" resultMap="boardMap">
+		select * from tbl_board b inner join tbl_photo p
+		on b.bno = p.bno inner join tbl_hashtag h on b.bno = h.bno  where b.deleteyn = 'n' and mid = #{mid} group by b.bno order by b.bno desc limit 0, #{cri.page}
+	</select>
+	
 </mapper>

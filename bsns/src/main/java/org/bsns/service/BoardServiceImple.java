@@ -80,4 +80,10 @@ public class BoardServiceImple implements BoardService {
 		return mapper.getScrollList(cri);
 	}
 
+	@Override
+	public List<BoardVO> getListId(Criteria cri, String mid) {
+		
+		return mapper.getListId(cri, mid);
+	}
+
 }

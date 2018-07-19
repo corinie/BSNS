@@ -35,19 +35,8 @@ Navbar Second Section
 				<div class="col-lg-12">
 
 					<div class="box">
-						<form method="post">
-							<input class="form-control no-border" type="text" placeholder="Your name..." name="writer">
-							<textarea class="form-control no-border" rows="3"
-								placeholder="Type something..." name="content"></textarea>
-							
-							<input type="text" class="form-control input-sm" name="hashtag" value="#" placeholder="#Hash tag"> 
-							<input type="text" class="form-control input-sm" name="hashtag" value="#" placeholder="#Hash tag">
-							<input type="text" class="form-control input-sm" name="hashtag" value="#" placeholder="#Hash tag">
-							<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-							
-							
 							<div class="box-footer clearfix">
-								<button class="kafe-btn kafe-btn-mint-small pull-right btn-sm">Upload</button>
+								<a href="/member/profile"><button class="kafe-btn kafe-btn-mint-small pull-right btn-sm">Upload</button></a>
 								<div class="file-area">
 									<input id="fileInput" type="file" multiple>
 									<div id="upload">
@@ -55,7 +44,6 @@ Navbar Second Section
 									</div>
 								</div>
 							</div>
-						</form>
 					</div>
 
 				</div>
@@ -141,7 +129,7 @@ Navbar Second Section
 			setCSRF(csrftoken);
 			
 			$.ajax({
-				url : "/uploadAjax",
+				url : "/uploadProfile",
 				type : "POST",
 				data : formData,
 				dataType : 'json',
@@ -161,9 +149,9 @@ Navbar Second Section
 					.each(
 							function(i, obj) {
 								console.log(obj);
-								var fileCallPath = encodeURIComponent(obj.ppath
+								var fileCallPath = encodeURIComponent(obj.path
 										+ "/s_" + obj.uuid + "_" + obj.pname);
-								var originalFile = encodeURIComponent(obj.ppath
+								var originalFile = encodeURIComponent(obj.path
 										+ "/" + obj.uuid + "_" + obj.pname);
 								upstr += "<div>"
 										+ "<img class='file_image' src='/display?fileName="

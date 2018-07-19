@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.bsns.mapper.MemberMapper">
+
+
+	<resultMap type="org.bsns.domain.AuthVO" id="authMap">
+	<result property="mid" column="mid"/>
+	<result property="auth" column="auth"/>
+	</resultMap>
+	
+	<resultMap type="org.bsns.domain.MemberVO" id="memberMap">
+	<id property="mid" column="mid"/>
+	<result property="mpw" column="mpw"/>
+	<result property="mname" column="mname"/>
+	<result property="email" column="email"/>
+	<result property="profile" column="profile"/>
+	<collection property="avo" resultMap="authMap"></collection>
+	</resultMap>
+
+	<select id="readMember" resultMap="memberMap">
+		select * from tbl_member m inner join tbl_member_auth a on m.mid = a.mid
+		where m.mid = #{mid} 
+	</select>
+	
+	<insert id="setMember">
+		insert into tbl_member (mid, mpw, mname, email, mprofile)
+		values(#{mid}, #{mpw}, #{mname}, #{email}, #{mprofile})
+	</insert>
+	
+	<insert id="setAuth">
+		insert into tbl_member_auth (mid)
+		values(#{mid})
+	</insert>
+
+</mapper>

@@ -1,7 +1,10 @@
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 
 <!-- ==============================================
 Navbar Second Section
 =============================================== -->
+<sec:authentication property="principal" var="pinfo"/>
 <section class="nav-sec">
     <div class="d-flex justify-content-between">
         <div class="p-2 nav-icon-lg dark-black">
@@ -14,7 +17,7 @@ Navbar Second Section
                 <span>Explore</span>
             </a>
         </div>
-         <div class="p-2 nav-icon-lg mint-green">
+         <div class="p-2 nav-icon-lg dark-black">
             <a class="nav-icon" href="/board/register"><em class="fa fa-plus"></em>
                 <span>upload</span>
             </a>
@@ -26,12 +29,14 @@ Navbar Second Section
             </a>
         </div>
         <div class="p-2 nav-icon-lg dark-black">
-            <a class="nav-icon" href="photo_profile.html"><em class="fa fa-user"></em>
+            <a class="nav-icon" href="/member/profile?mid=${pinfo.username }"><em class="fa fa-user"></em>
                 <span>Profile</span>
             </a>
         </div>
     </div>
 </section>
+
+
 
 <!-- ==============================================
 Scripts
